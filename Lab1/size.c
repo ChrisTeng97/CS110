@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <time.h>
 
-#define PS(x) printf("Size of %s: %lu\n",#x,(long unsigned int)sizeof(x))
+#define PS(x) printf("Size of %s: %lu\n", #x, (long unsigned int)sizeof(x))
 
 int main(){
     PS(char);
@@ -23,7 +23,6 @@ int main(){
     PS(clock_t);
     PS(struct tm);
     PS(NULL);
-
 
     return 0;
 }
