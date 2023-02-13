@@ -70,14 +70,14 @@ Size of NULL: 8
 
 ### Diff
 
-long int: 4 bytes in 32bit, 8 bytes in 64bit.  
-void *: 4 bytes in 32bit, 8 bytes in 64bit.  
+`long int`: 4 bytes in 32bit, 8 bytes in 64bit.  
+`void *`: 4 bytes in 32bit, 8 bytes in 64bit.  
 Here, length of address in 32bit system equals to 4byte, in 64bit system equals to 8byte.  
-size_t: the length of address. So 4 bytes in 32bit, 8 bytes in 64bit.  
-NULL: An address. So 4 bytes in 32bit, 8 bytes in 64bit.  
-time_t, clock_t: `typedef long time_t`, `typedef long clock_t`.  
+`size_t`: the length of address. So 4 bytes in 32bit, 8 bytes in 64bit.  
+`NULL`: An address. So 4 bytes in 32bit, 8 bytes in 64bit.  
+`time_t`, `clock_t`: `typedef long time_t`, `typedef long clock_t`.  
 
-struct tm:
+`struct tm`:
 it has 9 int defined in the struct, this takes 36 bytes.  
 The glibc also has these 2 additional fields:  
 ```c
