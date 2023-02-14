@@ -4,7 +4,8 @@
 
 #define PS(x) printf("Size of %s: %lu\n", #x, (long unsigned int)sizeof(x))
 
-int main(){
+int main()
+{
     PS(char);
     PS(short);
     PS(short int);
