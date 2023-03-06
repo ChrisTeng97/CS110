@@ -14,7 +14,7 @@
    `.text` denotes code storage  
    `.data` denotes data storage  
    `.word` indicates 32-bit comma separated words (naturally aligned)  
-   哎CS110抄都不好好抄……
+   哎CS110抄都不好好抄，讲都不讲全让学生自学……
 
 2. >What number did the program output? What does this number represent?
 
@@ -22,7 +22,7 @@
 
 3. >At what address is `n` stored in memory?
    
-   0x10000010. This is based on the instruction `la t3, n` so we could know the content inside register `t3` is the address of `n`.
+   `0x10000010`. This is based on the instruction `la t3, n` so we could know the content inside register `t3` is the address of `n`.
 
 4. >Manually editing ...
    
