@@ -1,7 +1,7 @@
 ## Ex1.
 1. >What caused the errors in `simple_fn`, `naive_pow`, and `inc_arr` that were reported by the Venus CC checker?
 
-   `simple_fn`: Undeclared register `x0`: 
+   `simple_fn`: Undeclared register `t0`: 
    ```
    [CC Violation]: (PC=0x00000080) Usage of unset register t0! editor.S:58 mv a0, t0
    ```
@@ -33,7 +33,9 @@
 
 4. > Why wasn't the calling convention error in `helper_fn` reported by the CC checker?
    
-   Once you've fixed all the violations reported by the CC checker, the code might still fail: this is likely because there's still some remaining calling convention errors that Venus doesn't report. Since function calls in assembly language are ultimately just jumps, Venus can't report these violations without more information, **at risk of producing false positives**.  
+   Once you've fixed all the violations reported by the CC checker, the code might still fail: this is likely because there's still some remaining calling convention errors that Venus doesn't report. Since function calls in assembly language are ultimately just jumps, Venus can't report these violMUCH MUCH easier than ex1.
+   
+   ations without more information, **at risk of producing false positives**.  
    Venus's calling convention checker will not report all calling convention bugs; it is intended to be used primarily as a sanity check. Most importantly, **it will only look for bugs in functions that are exported with the `.globl` directive** - the meaning of `.globl` is explained in more detail in the Venus reference.
 
 ---

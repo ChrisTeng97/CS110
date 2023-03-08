@@ -84,7 +84,7 @@ naive_pow:
     # -----
     addi sp, sp, -12
     sw s0, 8(sp)
-    sw a0, 4(sp)
+    sw a0, 4(sp) # actually no need to do so but i'm too lazy to delete it
     sw a1, 0(sp)
     # END PROLOGUE
     li s0, 1
