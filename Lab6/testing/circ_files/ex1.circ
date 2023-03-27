@@ -166,13 +166,10 @@ end TCL_Generic;
     <wire from="(170,450)" to="(220,450)"/>
     <wire from="(1160,1040)" to="(1160,1070)"/>
     <wire from="(250,310)" to="(250,450)"/>
-    <wire from="(890,810)" to="(1080,810)"/>
     <wire from="(260,290)" to="(260,370)"/>
-    <wire from="(890,810)" to="(890,830)"/>
     <wire from="(1020,1020)" to="(1020,1040)"/>
     <wire from="(1160,1000)" to="(1210,1000)"/>
     <wire from="(150,330)" to="(180,330)"/>
-    <wire from="(900,850)" to="(920,850)"/>
     <wire from="(230,330)" to="(230,490)"/>
     <wire from="(1020,730)" to="(1040,730)"/>
     <wire from="(1150,1070)" to="(1160,1070)"/>
@@ -180,21 +177,16 @@ end TCL_Generic;
     <wire from="(310,660)" to="(330,660)"/>
     <wire from="(310,780)" to="(330,780)"/>
     <wire from="(310,820)" to="(330,820)"/>
-    <wire from="(1090,1000)" to="(1160,1000)"/>
-    <wire from="(890,830)" to="(920,830)"/>
-    <wire from="(860,840)" to="(890,840)"/>
     <wire from="(250,450)" to="(260,450)"/>
     <wire from="(400,640)" to="(400,690)"/>
     <wire from="(950,1020)" to="(1020,1020)"/>
     <wire from="(1160,1000)" to="(1160,1040)"/>
     <wire from="(1070,1140)" to="(1090,1140)"/>
-    <wire from="(1080,810)" to="(1080,830)"/>
     <wire from="(170,490)" to="(230,490)"/>
     <wire from="(790,1150)" to="(850,1150)"/>
     <wire from="(870,990)" to="(930,990)"/>
     <wire from="(870,1030)" to="(930,1030)"/>
-    <wire from="(960,840)" to="(1020,840)"/>
-    <wire from="(1170,1140)" to="(1170,1170)"/>
+    <wire from="(1090,1140)" to="(1190,1140)"/>
     <wire from="(260,390)" to="(260,410)"/>
     <wire from="(310,600)" to="(310,620)"/>
     <wire from="(310,760)" to="(310,780)"/>
@@ -229,7 +221,6 @@ end TCL_Generic;
     <wire from="(260,390)" to="(320,390)"/>
     <wire from="(400,730)" to="(400,800)"/>
     <wire from="(200,290)" to="(260,290)"/>
-    <wire from="(890,830)" to="(890,840)"/>
     <wire from="(870,1000)" to="(930,1000)"/>
     <wire from="(870,1040)" to="(930,1040)"/>
     <wire from="(360,980)" to="(410,980)"/>
@@ -267,6 +258,7 @@ end TCL_Generic;
     <wire from="(870,1140)" to="(920,1140)"/>
     <wire from="(870,1010)" to="(930,1010)"/>
     <wire from="(870,1050)" to="(930,1050)"/>
+    <wire from="(1190,1140)" to="(1190,1170)"/>
     <wire from="(200,310)" to="(250,310)"/>
     <wire from="(310,660)" to="(310,680)"/>
     <wire from="(310,820)" to="(310,840)"/>
@@ -278,7 +270,6 @@ end TCL_Generic;
     <wire from="(320,300)" to="(320,390)"/>
     <wire from="(200,230)" to="(300,230)"/>
     <wire from="(200,330)" to="(230,330)"/>
-    <wire from="(1090,1140)" to="(1170,1140)"/>
     <wire from="(790,1050)" to="(790,1150)"/>
     <wire from="(510,1000)" to="(540,1000)"/>
     <wire from="(450,990)" to="(470,990)"/>
@@ -490,16 +481,6 @@ end TCL_Generic;
       <a name="out_width" val="9"/>
       <a name="type" val="zero"/>
     </comp>
-    <comp lib="3" loc="(860,840)" name="Negator"/>
-    <comp lib="0" loc="(1080,830)" name="Pin">
-      <a name="facing" val="north"/>
-      <a name="output" val="true"/>
-      <a name="width" val="8"/>
-    </comp>
-    <comp lib="0" loc="(900,850)" name="Constant">
-      <a name="width" val="8"/>
-    </comp>
-    <comp lib="3" loc="(960,840)" name="Adder"/>
     <comp lib="1" loc="(930,1160)" name="NOT Gate"/>
     <comp lib="1" loc="(920,1110)" name="NOT Gate"/>
     <comp lib="0" loc="(850,1150)" name="Splitter">
@@ -525,11 +506,6 @@ end TCL_Generic;
       <a name="appear" val="center"/>
     </comp>
     <comp lib="1" loc="(950,1180)" name="NOT Gate"/>
-    <comp lib="0" loc="(1170,1170)" name="Pin">
-      <a name="facing" val="north"/>
-      <a name="output" val="true"/>
-      <a name="width" val="9"/>
-    </comp>
     <comp lib="2" loc="(1150,1070)" name="Multiplexer">
       <a name="width" val="9"/>
       <a name="enable" val="false"/>
@@ -551,6 +527,11 @@ end TCL_Generic;
       <a name="width" val="9"/>
     </comp>
     <comp lib="0" loc="(1020,1040)" name="Pin">
+      <a name="facing" val="north"/>
+      <a name="output" val="true"/>
+      <a name="width" val="9"/>
+    </comp>
+    <comp lib="0" loc="(1190,1170)" name="Pin">
       <a name="facing" val="north"/>
       <a name="output" val="true"/>
       <a name="width" val="9"/>
