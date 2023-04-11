@@ -512,12 +512,12 @@ end TCL_Generic;
       <a name="incoming" val="4"/>
       <a name="appear" val="center"/>
     </comp>
-    <comp lib="8" loc="(278,540)" name="Text">
-      <a name="text" val="(10+65+10) * 4 = 340ns"/>
+    <comp lib="8" loc="(274,587)" name="Text">
+      <a name="text" val="f=1/85ns = 11.764MHz"/>
       <a name="font" val="SansSerif plain 12"/>
     </comp>
-    <comp lib="8" loc="(274,587)" name="Text">
-      <a name="text" val="f=1/340ns = 2.041MHz"/>
+    <comp lib="8" loc="(276,544)" name="Text">
+      <a name="text" val="(10+65+10) = 85ns"/>
       <a name="font" val="SansSerif plain 12"/>
     </comp>
   </circuit>
@@ -540,10 +540,10 @@ end TCL_Generic;
       <rect height="21" stroke="none" width="148" x="60" y="110"/>
       <rect fill="none" height="80" stroke="#000000" stroke-width="2" width="148" x="60" y="50"/>
       <text fill="#ffffff" font-family="Dialog" font-size="14" font-weight="bold" text-anchor="middle" x="136" y="125">move_and_add</text>
-      <circ-port height="10" pin="470,220" width="10" x="215" y="55"/>
       <circ-port height="8" pin="220,350" width="8" x="46" y="96"/>
-      <circ-port height="8" pin="220,220" width="8" x="46" y="56"/>
       <circ-port height="8" pin="220,270" width="8" x="46" y="76"/>
+      <circ-port height="8" pin="220,220" width="8" x="46" y="56"/>
+      <circ-port height="10" pin="470,220" width="10" x="215" y="55"/>
       <rect height="4" stroke="none" width="10" x="209" y="58"/>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="174" y="84">multiplicand</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="180" y="96">(moved)</text>
