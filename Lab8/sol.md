@@ -106,3 +106,56 @@ struct log_entry{
 Let `int status`, `int reference_time` and `int src_ip` in one cache line. (Frequently accessed data should be adjacent to each other in memory)
 And change `reference_time` from `long` to `int`. (Use types with as few bytes as possible)
 Keep `status` as `int` to align. (Avoid padding)
+
+
+---
+# Ex2.
+The alternative `apply_gb()` implementation:
+```c
+Image apply_gb(Image a, FVec gv)
+{
+    Image b = gb_h(a, gv);
+    Image c = gb_h(transpose(b),gv);
+    c = transpose(c);
+    free(b.data);
+}
+```
+
+Running result:
+```
+gcc -O2  -o gbfloat_base main.c apply_gb_base.c -lm
+./gbfloat_base test.jpg test_base.jpg 0.6 -2.0 2.0 1001 201
+horizontal gaussian blur time: 0.351749 
+vertical gaussian blur time: 0.402348 
+0.766982 
+gcc -O2  -o gbfloat_fast main.c apply_gb_fast.c -lm
+./gbfloat_fast test.jpg test_fast.jpg 0.6 -2.0 2.0 1001 201
+0.483483 
+gcc -O2  -o test_accuracy test_accuracy.c -lm
+./test_accuracy test_base.jpg test_fast.jpg
+0.000000
+```
+
+## Q1.
+> Why `gb_h()` runs faster than `gb_v()`?
+
+The only difference between `gb_h()` and `gb_v()`:
+```c
+// gb_h()
+sum += ... get_pixel(a, x + offset, y)[channel];
+// gb_v()
+sum += ... get_pixel(a, x, y + offset)[channel];
+```
+
+Consider the definition of `get_pixel()`:
+```c
+{
+    ...
+    return img.data + img.numChannels * (y * img.dimX + x);
+}
+```
+Since `img.dimX` is usually a big value (>10), so:  
+for `gb_v()`: this function changes `y`, so the different addresses it returned usually have a far distance(multiple `dimX`-s) between them.  
+for `gb_h()`: this function changes `x`, so the different addresses it returned usually have a small distance(multiple `x`-s) between them.
+
+So `gb_h()` is more cache-friendly, since for 1 miss, it would load it and its neighbours into the cache, which is more likely to cover the next `get_pixel()`. 
