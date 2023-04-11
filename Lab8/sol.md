@@ -91,23 +91,6 @@ Worst case: why not acting as a "Most Recently Used" cache? This is similar to a
 like the worst case, set cache associativity to 1, and block number to 4, you will get a constant `0` hit rate.
 
 
-# Ex3.
-
-```
-struct log_entry{
-    int status;  
-    int reference_time;
-    int src_ip;
-    char URL[128];
-    char bro[128];
-}logs[NUM_ENTRIES];
-
-```
-Let `int status`, `int reference_time` and `int src_ip` in one cache line. (Frequently accessed data should be adjacent to each other in memory)
-And change `reference_time` from `long` to `int`. (Use types with as few bytes as possible)
-Keep `status` as `int` to align. (Avoid padding)
-
-
 ---
 # Ex2.
 The alternative `apply_gb()` implementation:
@@ -159,3 +142,20 @@ for `gb_v()`: this function changes `y`, so the different addresses it returned 
 for `gb_h()`: this function changes `x`, so the different addresses it returned usually have a small distance(multiple `x`-s) between them.
 
 So `gb_h()` is more cache-friendly, since for 1 miss, it would load it and its neighbours into the cache, which is more likely to cover the next `get_pixel()`. 
+
+
+# Ex3.
+
+```
+struct log_entry{
+    int status;  
+    int reference_time;
+    int src_ip;
+    char URL[128];
+    char bro[128];
+}logs[NUM_ENTRIES];
+
+```
+Let `int status`, `int reference_time` and `int src_ip` in one cache line. (Frequently accessed data should be adjacent to each other in memory)
+And change `reference_time` from `long` to `int`. (Use types with as few bytes as possible)
+Keep `status` as `int` to align. (Avoid padding)
