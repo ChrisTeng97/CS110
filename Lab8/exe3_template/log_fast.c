@@ -5,10 +5,9 @@
 #define NUM_ENTRIES 409600
 
 struct log_entry{
-    // exchange the position
-    short status; // int -> short
-    int src_ip; 
-    int reference_time; // long -> int
+    int status;  
+    int reference_time;
+    int src_ip;
     char URL[128];
     char bro[128];
 }logs[NUM_ENTRIES];
