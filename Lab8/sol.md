@@ -156,6 +156,8 @@ struct log_entry{
 }logs[NUM_ENTRIES];
 
 ```
-Let `int status`, `int reference_time` and `int src_ip` in one cache line. (Frequently accessed data should be adjacent to each other in memory)
-And change `reference_time` from `long` to `int`. (Use types with as few bytes as possible)
-Keep `status` as `int` to align. (Avoid padding)
+Let `int status`, `int reference_time` and `int src_ip` in one cache line. (Frequently accessed data should be adjacent to each other in memory) 
+
+And change `reference_time` from `long` to `int`. (Use types with as few bytes as possible) 
+
+Keep `status` as `int` to align. (Avoid padding) 
