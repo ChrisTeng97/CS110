@@ -137,7 +137,7 @@ Consider the definition of `get_pixel()`:
     return img.data + img.numChannels * (y * img.dimX + x);
 }
 ```
-Since `img.dimX` is usually a big value (>10), so:  
+Since `img.dimX` is usually a big value , so:  
 for `gb_v()`: this function changes `y`, so the different addresses it returned usually have a far distance(multiple `dimX`-s) between them.  
 for `gb_h()`: this function changes `x`, so the different addresses it returned usually have a small distance(multiple `x`-s) between them.
 
