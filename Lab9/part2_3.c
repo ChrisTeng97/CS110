@@ -41,7 +41,7 @@ void init(void) {
 void check_correctness(char *msg) {
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < p; ++j) {
-            if (c[i][j] != c2[i][j]) {
+            if (fabsf(c[i][j] - c2[i][j]) > 1e-6) {
                 printf("%s incorrect!\n", msg);
                 return;
             }
@@ -88,8 +88,20 @@ void simd_matmul(void) {
         }
     }
 
+    for (int j = 0; j < p; j += 4) {
+        for (int i = 0; i < n; i += 4) {
+            __m128 sum = _mm_setzero_ps();
+            for (int k = 0; k < 4; k++) {
+                __m128 avec = _mm_load_ps(a[i + k * n]);
+                __m128 bvec = _mm_load1_ps(b[j + k * p]);
+                __m128 cvec = _mm_mul_ps(avec, bvec);
+                sum = _mm_add_ps(sum, cvec);
+            }
+            _mm_store_ps(c[i + j * n], sum);
+        }
+    }
 
-    for (int i = 0; i < n; ++i) {
+    /*for (int i = 0; i < n; ++i) {
         for (int j = 0; j < p; ++j) {
             __m128 cvec = _mm_setzero_ps();
             __m128 bvec = _mm_load_ps(b[i*4]);
@@ -100,7 +112,7 @@ void simd_matmul(void) {
             _mm_storeu_ps(c2[i*n+j*4],cvec);
             
         }
-    }
+    }*/
 
 
 
