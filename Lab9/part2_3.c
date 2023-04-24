@@ -1,5 +1,6 @@
 #include <emmintrin.h> /* header file for the SSE intrinsics */
 #include <time.h>
+#include <math.h>
 #include <stdio.h>
 
 float **a;
@@ -82,24 +83,32 @@ void simd_matmul(void) {
     clock_gettime(CLOCK_MONOTONIC, &start);
     // c2 = a * b
     // TODO: implement me!
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < p; ++j) {
-            c2[i][j]=0;
+    
+
+
+
+    __m128 row1, row2, row3, row4;
+    for (int i = 0; i < n; i += 4) {
+        for (int j = 0; j < p; j += 4) {
+            row1 = _mm_setzero_ps();
+            row2 = _mm_setzero_ps();
+            row3 = _mm_setzero_ps();
+            row4 = _mm_setzero_ps();
+            for (int k = 0; k < 4; k++) {
+                __m128 bvec = _mm_load_ps(b[k + j]);
+                row1 = _mm_add_ps(row1, _mm_mul_ps(_mm_set1_ps(a[i * 4][k]), bvec));
+                row2 = _mm_add_ps(row2, _mm_mul_ps(_mm_set1_ps(a[(i + 1) * 4 ][ k]), bvec));
+                row3 = _mm_add_ps(row3, _mm_mul_ps(_mm_set1_ps(a[(i + 2) * 4 ][ k]), bvec));
+                row4 = _mm_add_ps(row4, _mm_mul_ps(_mm_set1_ps(a[(i + 3) * 4 ][ k]), bvec));
+            }
+            _mm_store_ps(c2 [ i * 4 + j], row1);
+            _mm_store_ps(c2 [ (i + 1) * 4 + j], row2);
+            _mm_store_ps(c2 [ (i + 2) * 4 + j], row3);
+            _mm_store_ps(c2 [ (i + 3) * 4 + j], row4);
         }
     }
 
-    for (int j = 0; j < p; j += 4) {
-        for (int i = 0; i < n; i += 4) {
-            __m128 sum = _mm_setzero_ps();
-            for (int k = 0; k < 4; k++) {
-                __m128 avec = _mm_load_ps(a[i + k * n]);
-                __m128 bvec = _mm_load1_ps(b[j + k * p]);
-                __m128 cvec = _mm_mul_ps(avec, bvec);
-                sum = _mm_add_ps(sum, cvec);
-            }
-            _mm_store_ps(c[i + j * n], sum);
-        }
-    }
+
 
     /*for (int i = 0; i < n; ++i) {
         for (int j = 0; j < p; ++j) {
@@ -136,7 +145,7 @@ void loop_unroll_simd_matmul(void) {
 int main(void) {
     init();
 
-    naive_matmul();
+    //naive_matmul();
     simd_matmul();
     loop_unroll_matmul();
     loop_unroll_simd_matmul();
