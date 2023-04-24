@@ -1,9 +1,6 @@
 #include <emmintrin.h> /* header file for the SSE intrinsics */
 #include <time.h>
-#include <math.h>
 #include <stdio.h>
-
-// Thanks to Liu Yifeng!
 
 float **a;
 float **b;
@@ -14,7 +11,6 @@ int n = 40000;
 int p = 20000;
 
 void init(void) {
-    // A: n*4; B: 4*p; res: C&C2: n*p.
     a = malloc(n * sizeof(float *));
     b = malloc(4 * sizeof(float *));
     c = malloc(n * sizeof(float *));
@@ -44,7 +40,7 @@ void init(void) {
 void check_correctness(char *msg) {
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < p; ++j) {
-            if (fabsf(c[i][j] - c2[i][j]) > 1e-6) {
+            if (c[i][j] != c2[i][j]) {
                 printf("%s incorrect!\n", msg);
                 return;
             }
@@ -74,7 +70,6 @@ void loop_unroll_matmul(void) {
     clock_gettime(CLOCK_MONOTONIC, &start);
 
     // c2 = a * b
-    // TODO: implement me!
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < p; ++j) {
             c2[i][j] = 0;
@@ -93,7 +88,6 @@ void simd_matmul(void) {
     struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
     // c2 = a * b
-    // TODO: implement me!
     for (int i = 0; i < n; ++i){
         for (int j = 0; j < p; j += 4){
             __m128 c_val = _mm_setzero_ps();
@@ -115,14 +109,11 @@ void loop_unroll_simd_matmul(void) {
     struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
     // c2 = a * b
-    // TODO: implement me!
-    __m128 a_row, b_col, c_val;
     for (int i = 0; i < n; ++i){
         for (int j = 0; j < p; j += 4){
-            c_val = _mm_setzero_ps();
-
-            a_row = _mm_set1_ps(a[i][0]);
-            b_col = _mm_loadu_ps(&b[0][j]);
+            __m128 c_val = _mm_setzero_ps();
+            __m128 a_row = _mm_set1_ps(a[i][0]);
+            __m128 b_col = _mm_loadu_ps(&b[0][j]);
             c_val = _mm_add_ps(c_val, _mm_mul_ps(a_row, b_col));
 
             a_row = _mm_set1_ps(a[i][1]);
@@ -132,7 +123,7 @@ void loop_unroll_simd_matmul(void) {
             a_row = _mm_set1_ps(a[i][2]);
             b_col = _mm_loadu_ps(&b[2][j]);
             c_val = _mm_add_ps(c_val, _mm_mul_ps(a_row, b_col));
-
+            
             a_row = _mm_set1_ps(a[i][3]);
             b_col = _mm_loadu_ps(&b[3][j]);
             c_val = _mm_add_ps(c_val, _mm_mul_ps(a_row, b_col));
@@ -140,6 +131,7 @@ void loop_unroll_simd_matmul(void) {
             _mm_storeu_ps(&c2[i][j], c_val);
         }
     }
+
     clock_gettime(CLOCK_MONOTONIC, &end);
     printf("unroll+simd: %f\n", (float) (end.tv_sec - start.tv_sec) + (float) (end.tv_nsec - start.tv_nsec) / 1000000000.0f);
     check_correctness("loop_unroll_simd_matmul");
