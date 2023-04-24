@@ -1,5 +1,7 @@
 # Ex1.
 
+This is terribly written. Please refer to Bill Hu's answer [here](https://github.com/billhu0/CS110/blob/main/Labs/Lab08/Lab08.md).
+
 ## Scenario1.
 
 > (Venus won't let you change this, why?)
