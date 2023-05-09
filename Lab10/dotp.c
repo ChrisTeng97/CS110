@@ -57,7 +57,7 @@ double
 dotp_manual_optimized (double *x, double *y, int arr_size)
 {
   double global_sum = 0.0;
-  int num_threads = omp_get_num_threads();
+  
   #pragma omp parallel
   {
     // int thread_num = omp_get_thread_num();
