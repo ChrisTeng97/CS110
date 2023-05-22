@@ -52,6 +52,8 @@ void Board_self_test(void)
     }
 }
 
+void example(); // remember to add a declaration here
+
 int main(void)
 {
     IO_init();         // init OLED
@@ -63,6 +65,7 @@ int main(void)
     {
     delay_1ms(10);
     // YOUR CODE HERE
+    example();
     }
     #endif
 }
