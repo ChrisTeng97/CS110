@@ -7,6 +7,8 @@ sudo chmod -R 777 /dev/bus/usb/
 
 The board is $160\times 80$ pixels.
 
+Inside this folder, the version of `dfu-util` is `0.11`.
+
 ---
 
 ```
